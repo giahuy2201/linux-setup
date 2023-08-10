@@ -1,0 +1,14 @@
+---
+- name: Install Docker
+  package:
+    name:
+      - docker
+      - docker-compose
+    state: latest
+    update_cache: yes
+
+- name: Ensure Docker service is enabled and started
+  service:
+    name: docker
+    enabled: yes
+    state: started

@@ -1,0 +1,9 @@
+---
+- include_tasks: essential.yml
+- include_tasks: rpi.yml
+  when: raspberrypi == 'yes'
+- include_tasks: user.yml
+- include_tasks: ssh.yml
+  when: enable_ssh == 'yes'
+- include_tasks: dotfiles.yml
+  when: with_dotfiles

@@ -1,0 +1,58 @@
+# ANSIBLE
+
+raspberrypi: 'no'
+qemu_vm: 'no'
+
+hostname: server
+username: username
+password: password
+shell: /bin/bash
+
+with_serial: false
+with_wireguard: false
+with_dotfiles: false
+with_docker: false
+with_storage: false
+
+enable_ssh: 'yes'
+allow_restart: 'no'
+
+dotfiles_repo: https://github.com/giahuy2201/dotfiles
+
+# SYSTEM
+
+swappiness: 60
+ip_forward: 'no'
+
+timezone: America/New_York
+
+dotfiles_dir: '/home/{{ username }}/dotfiles'
+
+# Hypervisor
+
+hypervisor: 'no'
+acs_patch: 'no'
+gpu_passthrough: 'no'
+
+# PACKAGES
+
+essential_packages:
+  - neovim
+  - git
+  - neofetch
+  - btop
+  - iftop
+  - powertop
+  - net-tools
+  - smartmontools
+  - unzip
+  - iperf3
+
+# DOCKER
+
+compose_file: 'docker-compose.yaml'
+containers_backup_dir: '~/Sync/{{ hostname }}/{{ username }}/containers'
+containers_dir: '/home/{{ username }}/containers'
+
+migrate_containers: 'no'
+compose_up: 'no'

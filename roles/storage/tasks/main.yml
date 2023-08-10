@@ -1,0 +1,25 @@
+---
+- name: Ensure nfs-utils and cifs-utils are installed
+  package:
+    name:
+      - nfs-utils
+      - cifs-utils
+    state: latest
+    update_cache: yes
+
+- name: Mount Samba shares at boot
+  ansible.posix.mount:
+    path: '/mnt/{{ item.name }}'
+    src: '//{{ item.ip }}/{{ item.dir }}'
+    fstype: cifs
+    opts: 'uid=1000,gid=1000,forceuid,forcegid,username={{ cifs_username }},password={{ cifs_password }}'
+    state: mounted
+  loop: '{{ cifs_shares }}'
+
+- name: Mount NFS volumes at boot
+  ansible.posix.mount:
+    path: '/mnt/{{ item.name }}'
+    src: '{{ item.ip }}:{{ item.dir }}'
+    fstype: nfs
+    state: mounted
+  loop: '{{ nfs_volumes }}'

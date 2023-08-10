@@ -1,0 +1,31 @@
+---
+- name: Ensure stow is installed
+  package:
+    name:
+      - stow
+    state: latest
+
+- name: Check if dotfiles folder exists
+  stat:
+    path: '{{ dotfiles_dir }}'
+  register: dotfiles_folder
+
+- name: Clone dotfiles repo
+  git:
+    repo: '{{ dotfiles_repo }}'
+    dest: '{{ dotfiles_dir }}'
+  when: not dotfiles_folder.stat.exists
+
+- name: Change dotfiles folder permissions
+  file:
+    path: '{{ dotfiles_dir}}'
+    state: directory
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Stow dotfiles
+  shell: 
+    cmd: 'stow -v -t /home/{{ username }} */'
+    chdir: '{{ dotfiles_dir }}'
+  register: stow_result
+  changed_when: '"LINK" in stow_result.stderr'

@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: yes
+
+  roles:
+    - role: system
+    - role: docker
+      when: with_docker
+    - role: storage
+      when: with_storage
+    - role: wireguard
+      when: with_wireguard
+
+  pre_tasks:
+    - import_tasks: tasks/platform.yml
+    - import_tasks: tasks/rpi.yml
