@@ -5,5 +5,6 @@
 - include_tasks: user.yml
 - include_tasks: ssh.yml
   when: enable_ssh == 'yes'
+- include_tasks: qemu.yml
 - include_tasks: dotfiles.yml
   when: with_dotfiles
