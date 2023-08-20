@@ -1,0 +1,32 @@
+---
+- name: Update and upgrade packages with pacman
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install essential packages with pacman
+  pacman:
+    name: '{{ essential_packages }}'
+    state: latest
+    update_cache: yes
+
+- name: Install Sway packages with pacman
+  pacman:
+    name: '{{ sway_packages }}'
+    state: latest
+    update_cache: yes
+  when: with_sway
+
+- name: Install desktop apps with pacman
+  pacman:
+    name: '{{ desktop_apps }}'
+    state: latest
+    update_cache: yes
+  when: with_apps
+
+- name: Install desktop fonts with pacman
+  pacman:
+    name: '{{ desktop_fonts }}'
+    state: latest
+    update_cache: yes
+  when: with_fonts

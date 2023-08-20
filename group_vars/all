@@ -14,6 +14,10 @@ with_dotfiles: false
 with_docker: false
 with_storage: false
 
+with_sway: false
+with_apps: false
+with_fonts: false
+
 enable_ssh: 'yes'
 allow_restart: 'no'
 
@@ -48,6 +52,31 @@ essential_packages:
   - unzip
   - iperf3
 
+sway_packages:
+  - sway
+  - swayidle
+  - swaylock
+  - swaybg
+  - waybar
+  - bemenu
+  - zsh
+
+aur_packages:
+  - keyd # key remap
+  - yay
+
+desktop_apps:
+  - foot
+  - mpv
+  - imv
+  - firefox
+  - pcmanfm-gtk3
+
+desktop_fonts:
+  - adobe-source-code-pro-fonts
+  - ttf-jetbrains-mono-nerd # waybar icons
+  - ttf-ms-fonts
+  
 # DOCKER
 
 compose_file: 'docker-compose.yaml'

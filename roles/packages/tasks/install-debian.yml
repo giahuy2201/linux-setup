@@ -1,0 +1,19 @@
+---
+- name: Update and upgrade packages with apt
+  apt:
+    update_cache: yes
+    upgrade: yes
+    autoremove: yes
+
+- name: Install essential packages with apt
+  apt:
+    name: '{{ essential_packages }}'
+    state: latest
+    update_cache: yes
+
+- name: Install Sway packages with apt
+  apt:
+    name: '{{ sway_packages }}'
+    state: latest
+    update_cache: yes
+  when: with_sway
