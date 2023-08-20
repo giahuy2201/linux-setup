@@ -25,7 +25,12 @@
 
 - name: Stow dotfiles
   shell: 
-    cmd: 'stow -v -t /home/{{ username }} */'
+    cmd: 'stow -v -t /home/{{ username }} --adopt */'
     chdir: '{{ dotfiles_dir }}'
   register: stow_result
   changed_when: '"LINK" in stow_result.stderr'
+    
+- name: Reset all existing configs to dotfile's
+  command: git reset --hard
+  args:
+    chdir: '{{ dotfiles_dir }}'
