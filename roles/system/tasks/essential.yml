@@ -1,17 +1,4 @@
 ---
-- name: Update and upgrade packages with apt
-  apt:
-    update_cache: yes
-    upgrade: yes
-    autoremove: yes
-  when: ansible_pkg_mgr == 'apt'
-
-- name: Update and upgrade packages with pacman
-  pacman:
-    update_cache: yes
-    upgrade: yes
-  when: ansible_pkg_mgr == 'pacman'
-
 - name: Check if reboot required
   stat:
     path: /var/run/reboot-required
@@ -21,12 +8,6 @@
   reboot:
     msg: Rebooting due to a kernel update
   when: reboot_required_file.stat.exists and allow_restart == 'yes'
-
-- name: Install essential packages
-  package:
-    name: '{{ essential_packages }}'
-    state: latest
-    update_cache: yes
 
 - name: Set hostname to {{ hostname }}
   hostname:

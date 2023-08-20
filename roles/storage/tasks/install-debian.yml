@@ -1,0 +1,8 @@
+---
+- name: Ensure nfs-utils and cifs-utils are installed
+  apt:
+    name:
+      - nfs-utils
+      - cifs-utils
+    state: latest
+    update_cache: yes
