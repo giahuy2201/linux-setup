@@ -1,0 +1,5 @@
+---
+- include_tasks: keyd.yml
+  when: with_keyremap
+- include_tasks: dotfiles.yml
+  when: with_dotfiles

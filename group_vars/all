@@ -13,6 +13,7 @@ with_wireguard: false
 with_dotfiles: false
 with_docker: false
 with_storage: false
+with_keyremap: false
 
 with_sway: false
 with_apps: false

@@ -4,6 +4,8 @@
 
   roles:
     - role: system
+    - role: packages
+    - role: configs
     - role: docker
       when: with_docker
     - role: storage
