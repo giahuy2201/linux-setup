@@ -1,17 +1,20 @@
 ---
 - name: Update and upgrade packages with apt
+  become: true
   apt:
     update_cache: yes
     upgrade: yes
     autoremove: yes
 
 - name: Install essential packages with apt
+  become: true
   apt:
     name: '{{ essential_packages }}'
     state: latest
     update_cache: yes
 
 - name: Install Sway packages with apt
+  become: true
   apt:
     name: '{{ sway_packages }}'
     state: latest

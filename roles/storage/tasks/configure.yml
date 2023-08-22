@@ -1,5 +1,6 @@
 ---
 - name: Mount Samba shares at boot
+  become: true
   ansible.posix.mount:
     path: '/mnt/{{ item.name }}'
     src: '//{{ item.ip }}/{{ item.dir }}'
@@ -9,6 +10,7 @@
   loop: '{{ cifs_shares }}'
 
 - name: Mount NFS volumes at boot
+  become: true
   ansible.posix.mount:
     path: '/mnt/{{ item.name }}'
     src: '{{ item.ip }}:{{ item.dir }}'

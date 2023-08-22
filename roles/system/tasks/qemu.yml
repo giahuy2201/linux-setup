@@ -30,6 +30,7 @@
   notify: update grub
 
 - name: Add PCIE ACS override kernel parameters
+  become: true
   lineinfile:
     dest: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.*pcie_acs_override=downstream,multifunction)\"[^\"]+)(\".*)'
@@ -39,6 +40,7 @@
   when: hypervisor == 'yes' and acs_patch == 'yes'
 
 - name: Add allow_unsafe_interrupts kernel parameters
+  become: true
   lineinfile:
     dest: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.*vfio_iommu_type1.allow_unsafe_interrupts=1)\"[^\"]+)(\".*)'
@@ -48,6 +50,7 @@
   when: hypervisor == 'yes' and acs_patch == 'yes'
 
 - name: Add blacklisted modules kernel parameters
+  become: true
   lineinfile:
     dest: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.*modprobe.blacklist=amdgpu,i915)\"[^\"]+)(\".*)'
@@ -57,6 +60,7 @@
   when: hypervisor == 'yes' and gpu_passthrough == 'yes'
 
 - name: Force GPU vfio-pci with kernel parameters
+  become: true
   lineinfile:
     dest: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.*vfio-pci.ids={{ gpu_ids }})\"[^\"]+)(\".*)'

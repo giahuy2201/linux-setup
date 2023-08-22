@@ -5,19 +5,23 @@
   register: reboot_required_file
 
 - name: Reboot
+  become: true
   reboot:
     msg: Rebooting due to a kernel update
   when: reboot_required_file.stat.exists and allow_restart == 'yes'
 
 - name: Set hostname to {{ hostname }}
+  become: true
   hostname:
     name: '{{ hostname }}'
 
 - name: Set timezone to {{ timezone }}
+  become: true
   timezone:
     name: '{{ timezone }}'
 
 - name: Set RAM swappiness
+  become: true
   sysctl:
     name: vm.swappiness
     value: '{{ swappiness }}'
@@ -26,6 +30,7 @@
   when: swappiness is defined
 
 - name: Enable IP forwarding (ipv4)
+  become: true
   sysctl:
     name: net.ipv4.ip_forward
     value: '1'

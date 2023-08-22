@@ -1,10 +1,12 @@
 ---
 - name: Set {{ username }} shell to {{ shell }}
+  become: true
   user:
     name: '{{ username }}'
     shell: '{{ shell }}'
     
 - name: Give user {{ username }} home folder permissions
+  become: true
   file:
     path: '/home/{{ username }}'
     state: directory
@@ -12,6 +14,7 @@
     group: '{{ username }}'
 
 - name: 'Ensure {{ username }} group exist'
+  become: true
   group:
     name: '{{ username }}'
 
@@ -21,6 +24,7 @@
   when: with_docker
 
 - name: Ensure login user ({{ username }}) is in docker group
+  become: true
   user:
     name: "{{ username }}"
     groups: 
@@ -29,11 +33,13 @@
   when: with_docker
 
 - name: Check if group wheel exists
+  become: true
   group:
     name: wheel
   register: group_wheel
 
 - name: Setup login user with group wheel
+  become: true
   user:
     name: "{{ username }}"
     groups: 
@@ -42,11 +48,13 @@
   when: group_wheel.state == 'present'
     
 - name: Check if group sudo exists
+  become: true
   group:
     name: sudo
   register: group_sudo
 
 - name: Setup login user with group sudo
+  become: true
   user:
     name: "{{ username }}"
     groups: 
@@ -55,6 +63,7 @@
   when: group_wheel.state == 'absent' and group_sudo.state == 'present'
 
 - name: Allow {{ username }} user to have passwordless sudo
+  become: true
   template:
     src: passwordless-sudo.j2
     dest: /etc/sudoers.d/passwordless-sudo

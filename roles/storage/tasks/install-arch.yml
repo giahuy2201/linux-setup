@@ -1,5 +1,6 @@
 ---
 - name: Ensure nfs-utils and cifs-utils are installed
+  become: true
   pacman:
     name:
       - nfs-utils

@@ -1,5 +1,6 @@
 ---
 - name: Link keyd default config
+  become: true
   file:
     src: /home/{{ username }}/.config/keyd/default.conf
     dest: /etc/keyd/default.conf
