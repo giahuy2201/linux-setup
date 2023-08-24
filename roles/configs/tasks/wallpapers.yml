@@ -1,0 +1,12 @@
+---
+- name: Ensure Pictures/wallpapers folder exists
+  file:
+    path: /home/{{ username }}/Pictures/wallpapers
+    state: directory
+
+- name: Download wallpaper {{ item.name }}
+  get_url:
+    url: '{{ item.url }}'
+    dest: /home/{{ username }}/Pictures/wallpapers/{{ item.name }}
+    mode: '0660'
+  loop: '{{ wallpapers }}'
