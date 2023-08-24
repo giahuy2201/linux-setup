@@ -35,3 +35,20 @@
   command: git reset --hard
   args:
     chdir: '{{ dotfiles_dir }}'
+
+- name: Ensure .config/zsh directory exists
+  file:
+    path: /home/{{ username }}/.config/zsh
+    state: directory
+  
+- name: Download minimal zsh theme
+  get_url:
+    url: https://raw.githubusercontent.com/subnixr/minimal/master/minimal.zsh
+    dest: /home/{{ username }}/.config/zsh/minimal.zsh
+
+- name: Set {{ zsh_mnml_prompt }} as zsh minimal prompt character
+  lineinfile:
+    dest: /home/{{ username }}/.zshrc
+    regexp: '^MNML_USER_CHAR='
+    line: "MNML_USER_CHAR={{ zsh_mnml_prompt }}"
+    state: present

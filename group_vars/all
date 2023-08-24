@@ -7,6 +7,7 @@ hostname: server
 username: username
 password: password
 shell: /bin/bash
+zsh_mnml_prompt: 'λ'
 
 with_serial: false
 with_wireguard: false
