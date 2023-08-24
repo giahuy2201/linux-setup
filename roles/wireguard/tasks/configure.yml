@@ -2,7 +2,7 @@
 - name: Copy client/server config file
   become: true
   copy:
-    src: wg0.conf
+    src: '{{ hostname }}.conf'
     dest: /etc/wireguard/wg0.conf
     owner: root
     group: root
