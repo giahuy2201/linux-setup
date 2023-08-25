@@ -6,23 +6,11 @@
       - stow
     state: latest
 
-- name: Check if dotfiles folder exists
-  stat:
-    path: '{{ dotfiles_dir }}'
-  register: dotfiles_folder
-
-- name: Clone dotfiles repo
+- name: Clone dotfiles repo (also discard current changes)
   git:
     repo: '{{ dotfiles_repo }}'
     dest: '{{ dotfiles_dir }}'
-  when: not dotfiles_folder.stat.exists
-
-- name: Change dotfiles folder permissions
-  file:
-    path: '{{ dotfiles_dir}}'
-    state: directory
-    owner: '{{ username }}'
-    group: '{{ username }}'
+    force: true
 
 - name: Stow dotfiles
   shell: 
@@ -30,11 +18,12 @@
     chdir: '{{ dotfiles_dir }}'
   register: stow_result
   changed_when: '"LINK" in stow_result.stderr'
-    
-- name: Reset all existing configs to dotfile's
-  command: git reset --hard
-  args:
-    chdir: '{{ dotfiles_dir }}'
+
+- name: Force update dotfiles repo again
+  git:
+    repo: '{{ dotfiles_repo }}'
+    dest: '{{ dotfiles_dir }}'
+    force: true
 
 - name: Ensure .config/zsh directory exists
   file:
@@ -46,9 +35,16 @@
     url: https://raw.githubusercontent.com/subnixr/minimal/master/minimal.zsh
     dest: /home/{{ username }}/.config/zsh/minimal.zsh
 
+- name: Ensure .aliases file exists
+  file:
+    path: /home/{{ username }}/.aliases
+    state: touch
+    modification_time: preserve
+    access_time: preserve
+
 - name: Set {{ zsh_mnml_prompt }} as zsh minimal prompt character
   lineinfile:
-    dest: /home/{{ username }}/.zshrc
+    dest: /home/{{ username }}/.aliases
     regexp: '^MNML_USER_CHAR='
     line: "MNML_USER_CHAR={{ zsh_mnml_prompt }}"
     state: present
