@@ -4,11 +4,13 @@
   roles:
     - role: system
     - role: packages
-    - role: configs
     - role: docker
       when: with_docker
     - role: storage
       when: with_storage
+    - role: configs
+    - role: syncthing # needs config files copied/linked to .local/state/syncthing
+      when: with_syncthing
     - role: wireguard
       when: with_wireguard
 

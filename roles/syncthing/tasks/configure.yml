@@ -1,0 +1,19 @@
+---
+# Set up Syncthing user systemd service
+
+- name: Create systemd user path
+  file:
+    path: /home/{{ username }}/.config/systemd/user/
+    state: directory
+
+- name: Download syncthing default user service
+  get_url:
+    url: https://raw.githubusercontent.com/syncthing/syncthing/main/etc/linux-systemd/user/syncthing.service
+    dest: /home/{{ username }}/.config/systemd/user/syncthing.service
+
+- name: Enable and start syncthing service
+  systemd_service:
+    name: syncthing
+    scope: user
+    state: started
+    enabled: yes

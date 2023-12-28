@@ -15,19 +15,22 @@ with_dotfiles: false
 with_docker: false
 with_storage: false
 with_keyremap: false
+with_syncthing: false
 
 with_sway: false
 with_apps: false
 with_fonts: false
+with_wallpapers: false
 
 enable_ssh: 'yes'
 allow_restart: 'no'
 
 dotfiles_repo: https://github.com/giahuy2201/dotfiles
 
+local_config_backup_dir: '/mnt/Config/{{ hostname }}'
+
 # SYSTEM
 
-swappiness: 60
 ip_forward: 'no'
 
 timezone: America/New_York
@@ -57,15 +60,29 @@ essential_packages:
 sway_packages:
   - sway
   - swayidle
-  - swaylock
   - swaybg
   - waybar
-  - bemenu
   - zsh
+  - cliphist
+  - calcurse
+  - jq
+  - wl-clipboard
+  - wf-recorder
+  - grim
+  - slurp
+  - swappy # screenshot editor
+  - libnotify
+  - kanshi
+  - xdg-user-dirs
+  - polkit-gnome
+  - light
+  - bc
 
 aur_packages:
   - keyd # key remap
   - yay
+  - swayr
+  - swaylock-effects
 
 desktop_apps:
   - foot
@@ -78,6 +95,7 @@ desktop_fonts:
   - adobe-source-code-pro-fonts
   - ttf-jetbrains-mono-nerd # waybar icons
   - ttf-ms-fonts
+  - noto-fonts-cjk # CJK fonts
   
 # DOCKER
 

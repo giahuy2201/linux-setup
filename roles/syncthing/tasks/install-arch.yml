@@ -1,0 +1,8 @@
+---
+- name: Ensure syncthing is installed
+  become: true
+  pacman:
+    name:
+      - syncthing
+    state: latest
+    update_cache: yes
