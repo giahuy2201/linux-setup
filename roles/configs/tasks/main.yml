@@ -5,3 +5,4 @@
   when: with_dotfiles
 - include_tasks: wallpapers.yml
   when: with_wallpapers
+- include_tasks: local.yml
