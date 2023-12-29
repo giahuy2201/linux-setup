@@ -8,6 +8,7 @@
     opts: 'uid=1000,gid=1000,forceuid,forcegid,username={{ cifs_username }},password={{ cifs_password }}'
     state: mounted
   loop: '{{ cifs_shares }}'
+  when: cifs_shares is defined
 
 - name: Mount NFS volumes at boot
   become: true
@@ -17,3 +18,4 @@
     fstype: nfs
     state: mounted
   loop: '{{ nfs_volumes }}'
+  when: nfs_volumes is defined

@@ -21,13 +21,13 @@
     - name: Copy them
       copy:
         src: "{{ item.path }}"
-        dest: /home/{{ username }}/.config/local/
+        dest: "{{ dotfiles_dir }}/local/"
         remote_src: yes
       with_items: "{{ collected_files.files }}"
 
 - name: Stow local configs
   shell:
-    cmd: "stow -v -t /home/{{ username }} local/"
+    cmd: "stow -v -t /home/{{ username }} --adopt local/"
     chdir: "{{ dotfiles_dir }}"
   register: stow_result
   changed_when: '"LINK" in stow_result.stderr'

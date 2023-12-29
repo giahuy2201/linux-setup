@@ -1,4 +1,5 @@
 .DS_Store
-inventory
-host_vars/*
+/inventory
+/host_vars/*
 !host_vars/tester
+/roles/wireguard/files

@@ -4,6 +4,7 @@
   pacman:
     name: 
       - wireguard-tools
+      - resolvconf
     state: latest
     update_cache: yes
 

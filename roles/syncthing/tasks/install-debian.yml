@@ -1,8 +1,0 @@
----
-- name: Ensure syncthing is installed
-  become: true
-  apt:
-    name:
-      - syncthing
-    state: latest
-    update_cache: yes
