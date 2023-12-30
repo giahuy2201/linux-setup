@@ -32,6 +32,15 @@
     append: true
   when: with_docker
 
+- name: Ensure login user ({{ username }}) is in video group
+  become: true
+  user:
+    name: "{{ username }}"
+    groups: 
+      - video
+    append: true
+  when: with_sway
+
 - name: Check if group wheel exists
   become: true
   group:
@@ -70,4 +79,4 @@
     owner: root
     group: root
     mode: 0644
-  when: group_wheel.state == 'absent' and group_sudo.state == 'present'
+  when: group_sudo.state == 'present'
