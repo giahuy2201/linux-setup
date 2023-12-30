@@ -1,4 +1,12 @@
 ---
+- name: Remove undesired defaults apps with pacman
+  become: true
+  pacman:
+    name: '{{ removed_packages }}'
+    state: absent
+    extra_args: --recursive
+    update_cache: yes
+
 - name: Update and upgrade packages with pacman
   become: true
   pacman:
@@ -35,3 +43,9 @@
     state: latest
     update_cache: yes
   when: with_fonts
+
+- name: Install AUR packages
+  kewlfft.aur.aur:
+    name: '{{ aur_packages }}'
+    state: latest
+    update_cache: yes

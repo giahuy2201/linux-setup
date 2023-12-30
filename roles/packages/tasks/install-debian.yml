@@ -1,4 +1,12 @@
 ---
+- name: Remove undesired defaults apps with apt
+  become: true
+  apt:
+    name: '{{ removed_packages }}'
+    state: absent
+    autoremove: true
+    update_cache: yes
+
 - name: Update and upgrade packages with apt
   become: true
   apt:

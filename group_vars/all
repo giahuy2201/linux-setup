@@ -56,6 +56,8 @@ essential_packages:
   - smartmontools
   - unzip
   - iperf3
+  - tmux
+  - gparted
 
 sway_packages:
   - sway
@@ -90,6 +92,28 @@ desktop_apps:
   - imv
   - firefox
   - pcmanfm-gtk3
+  
+removed_packages:
+  - atril
+  - shotwell
+  - transmission-gtk
+  - xfburn
+  - xsane
+  - yelp
+  - synaptic
+  - simple-scan
+  - rygel
+  - imagemagick quodlibet
+  - mousepad
+  - gnome-maps
+  - gnome-calendar
+  - gnome-music
+  - gnome-contacts
+  - gnome-weather
+  - parole
+  - gnome-system-monitor
+  - libreoffice*
+  - imagemagick*
 
 desktop_fonts:
   - adobe-source-code-pro-fonts
