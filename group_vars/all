@@ -58,6 +58,7 @@ essential_packages:
   - iperf3
   - tmux
   - gparted
+  - tree
 
 sway_packages:
   - sway
