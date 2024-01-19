@@ -1,0 +1,46 @@
+---
+- name: Remove undesired defaults apps with dnf
+  become: true
+  dnf:
+    name: '{{ item }}'
+    state: absent
+    autoremove: yes
+    update_cache: yes
+  loop: '{{ removed_packages }}'
+
+- name: Update and upgrade packages with dnf
+  become: true
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install essential packages with dnf
+  become: true
+  dnf:
+    name: '{{ essential_packages }}'
+    state: latest
+    update_cache: yes
+
+- name: Install Sway packages with dnf
+  become: true
+  dnf:
+    name: '{{ sway_packages }}'
+    state: latest
+    update_cache: yes
+  when: with_sway
+
+- name: Install desktop apps with dnf
+  become: true
+  dnf:
+    name: '{{ desktop_apps }}'
+    state: latest
+    update_cache: yes
+  when: with_apps
+
+- name: Install desktop fonts with dnf
+  become: true
+  dnf:
+    name: '{{ desktop_fonts }}'
+    state: latest
+    update_cache: yes
+  when: with_fonts
