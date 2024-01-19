@@ -104,7 +104,8 @@ removed_packages:
   - synaptic
   - simple-scan
   - rygel
-  - imagemagick quodlibet
+  - imagemagick 
+  - quodlibet
   - mousepad
   - gnome-maps
   - gnome-calendar

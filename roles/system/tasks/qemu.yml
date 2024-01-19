@@ -1,5 +1,6 @@
 ---
-- name: Install QEMU Guest Agent 
+- name: Install QEMU Guest Agent
+  become: true 
   package:
     name:
       - qemu-guest-agent
@@ -8,18 +9,21 @@
   when: qemu_vm == 'yes'
 
 - name: Enable qemu-guest-agent service
+  become: true
   service:
     name: qemu-guest-agent
     enabled: yes
   when: qemu_vm == 'yes'
 
 - name: Start qemu-guest-agent
+  become: true
   service:
     name: qemu-guest-agent
     state: started
   when: qemu_vm == 'yes'
 
 - name: Add iommu kernel parameters
+  become: true
   lineinfile:
     dest: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.*intel_iommu=on iommu=pt)\"[^\"]+)(\".*)'

@@ -19,6 +19,7 @@
     name: '{{ username }}'
 
 - name: 'Add docker group'
+  become: true
   group:
     name: docker
   when: with_docker
