@@ -5,3 +5,5 @@
   when: ansible_os_family == 'RedHat'
 - include_tasks: install-debian.yml
   when: ansible_os_family == 'Debian'
+- include_tasks: flatpak.yml
+  when: with_flatpak

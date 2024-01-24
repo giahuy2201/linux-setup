@@ -20,6 +20,7 @@ with_syncthing: false
 with_sway: false
 with_apps: false
 with_fonts: false
+with_flatpak: false
 with_wallpapers: false
 
 enable_ssh: 'yes'
@@ -59,6 +60,7 @@ essential_packages:
   - tmux
   - gparted
   - tree
+  - flatpak
 
 sway_packages:
   - sway
@@ -93,6 +95,10 @@ desktop_apps:
   - imv
   - firefox
   - pcmanfm-gtk3
+
+flatpak_apps:
+  - com.brave.Browser
+  - com.visualstudio.code-oss
   
 removed_packages:
   - atril
