@@ -1,0 +1,24 @@
+---
+- name: Clone keyd repo
+  git:
+    repo: '{{ keyd_repo }}'
+    dest: '{{ keyd_dir }}'
+    force: true
+
+- name: Build keyd from source
+  become: true
+  make:
+    chdir: '{{ keyd_dir }}'
+    jobs: '{{ ansible_facts["ansible_processor_nproc"] }}'
+
+- name: Install keyd
+  become: true
+  make:
+    chdir: '{{ keyd_dir }}'
+    target: install
+
+- name: Ensure keyd service is enabled and started
+  service:
+    name: keyd
+    enabled: yes
+    state: started

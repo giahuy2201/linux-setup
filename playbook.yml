@@ -9,6 +9,8 @@
     - role: storage
       when: with_storage
     - role: configs
+    - role: keyd # need config file linked to .config/keyd
+      when: with_keyd
     - role: syncthing # needs config files copied/linked to .local/state/syncthing
       when: with_syncthing
     - role: wireguard

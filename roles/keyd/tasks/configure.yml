@@ -5,3 +5,8 @@
     src: /home/{{ username }}/.config/keyd/default.conf
     dest: /etc/keyd/default.conf
     state: link
+
+- name: Restart keyd service
+  service:
+    name: keyd
+    state: restarted

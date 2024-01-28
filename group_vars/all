@@ -27,16 +27,18 @@ enable_ssh: 'yes'
 allow_restart: 'no'
 
 dotfiles_repo: https://github.com/giahuy2201/dotfiles
+dotfiles_dir: '/home/{{ username }}/dotfiles'
 
 local_config_backup_dir: '/mnt/Config/{{ hostname }}'
+
+keyd_repo: https://github.com/rvaiya/keyd
+keyd_dir: '/home/{{ username }}/keyd'
 
 # SYSTEM
 
 ip_forward: 'no'
 
 timezone: America/New_York
-
-dotfiles_dir: '/home/{{ username }}/dotfiles'
 
 # Hypervisor
 
