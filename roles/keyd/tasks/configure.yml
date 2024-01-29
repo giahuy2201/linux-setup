@@ -7,6 +7,7 @@
     state: link
 
 - name: Restart keyd service
+  become: true
   service:
     name: keyd
     state: restarted

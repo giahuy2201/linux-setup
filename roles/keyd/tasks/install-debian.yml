@@ -18,6 +18,7 @@
     target: install
 
 - name: Ensure keyd service is enabled and started
+  become: true
   service:
     name: keyd
     enabled: yes

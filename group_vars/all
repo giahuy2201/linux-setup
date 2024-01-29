@@ -63,6 +63,8 @@ essential_packages:
   - gparted
   - tree
   - flatpak
+  - make # + gcc to build packages from source
+  - gcc 
 
 sway_packages:
   - sway
