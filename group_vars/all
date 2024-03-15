@@ -1,13 +1,13 @@
 # ANSIBLE
 
-raspberrypi: 'no'
-qemu_vm: 'no'
+raspberrypi: "no"
+qemu_vm: "no"
 
 hostname: server
 username: username
 password: password
 shell: /bin/bash
-zsh_mnml_prompt: 'λ'
+zsh_mnml_prompt: "λ"
 
 with_serial: false
 with_wireguard: false
@@ -23,122 +23,122 @@ with_fonts: false
 with_flatpak: false
 with_wallpapers: false
 
-enable_ssh: 'yes'
-allow_restart: 'no'
+enable_ssh: "yes"
+allow_restart: "no"
 
 dotfiles_repo: https://github.com/giahuy2201/dotfiles
-dotfiles_dir: '/home/{{ username }}/dotfiles'
+dotfiles_dir: "/home/{{ username }}/dotfiles"
 
-local_config_backup_dir: '/mnt/Config/{{ hostname }}'
+local_config_backup_dir: "/mnt/Config/{{ hostname }}"
 
 keyd_repo: https://github.com/rvaiya/keyd
-keyd_dir: '/home/{{ username }}/keyd'
+keyd_dir: "/home/{{ username }}/keyd"
 
 # SYSTEM
 
-ip_forward: 'no'
+ip_forward: "no"
 
 timezone: America/New_York
 
 # Hypervisor
 
-hypervisor: 'no'
-acs_patch: 'no'
-gpu_passthrough: 'no'
+hypervisor: "no"
+acs_patch: "no"
+gpu_passthrough: "no"
 
 # PACKAGES
 
 essential_packages:
-  - neovim
-  - git
-  - neofetch
   - btop
-  - iftop
-  - powertop
-  - net-tools
-  - smartmontools
-  - unzip
-  - iperf3
-  - tmux
-  - gparted
-  - tree
   - flatpak
+  - gcc
+  - git
+  - gparted
+  - iftop
+  - iperf3
   - make # + gcc to build packages from source
-  - gcc 
+  - neofetch
+  - neovim
+  - net-tools
+  - powertop
+  - smartmontools
+  - tmux
+  - tree
+  - unzip
 
 sway_packages:
-  - sway
-  - swayidle
-  - swaybg
-  - waybar
-  - zsh
-  - cliphist
+  - bc
   - calcurse
-  - jq
-  - wl-clipboard
-  - wf-recorder
+  - cliphist
   - grim
+  - jq
+  - kanshi
+  - libnotify
+  - light
+  - polkit-gnome
+  - pulsemixer
   - slurp
   - swappy # screenshot editor
-  - libnotify
-  - kanshi
+  - sway
+  - swaybg
+  - swayidle
+  - waybar
+  - wf-recorder
+  - wl-clipboard
   - xdg-user-dirs
-  - polkit-gnome
-  - light
-  - bc
-  - pulsemixer
+  - zsh
 
 aur_packages:
   - keyd # key remap
-  - yay
-  - swayr
   - swaylock-effects
+  - swayr
+  - yay
 
 desktop_apps:
-  - foot
-  - mpv
-  - imv
   - firefox
+  - foot
+  - imv
+  - mpv
   - pcmanfm-gtk3
 
 flatpak_apps:
   - com.brave.Browser
   - com.visualstudio.code-oss
-  
+
 removed_packages:
   - atril
+  - gnome-calendar
+  - gnome-contacts
+  - gnome-maps
+  - gnome-music
+  - gnome-system-monitor
+  - gnome-weather
+  - imagemagick
+  - imagemagick*
+  - libreoffice*
+  - mousepad
+  - parole
+  - quodlibet
+  - rygel
   - shotwell
+  - simple-scan
+  - synaptic
   - transmission-gtk
   - xfburn
   - xsane
   - yelp
-  - synaptic
-  - simple-scan
-  - rygel
-  - imagemagick 
-  - quodlibet
-  - mousepad
-  - gnome-maps
-  - gnome-calendar
-  - gnome-music
-  - gnome-contacts
-  - gnome-weather
-  - parole
-  - gnome-system-monitor
-  - libreoffice*
-  - imagemagick*
 
 desktop_fonts:
   - adobe-source-code-pro-fonts
+  - noto-fonts-cjk # CJK fonts
   - ttf-jetbrains-mono-nerd # waybar icons
   - ttf-ms-fonts
-  - noto-fonts-cjk # CJK fonts
-  
+
 # DOCKER
 
-compose_file: 'docker-compose.yaml'
-containers_backup_dir: '~/Sync/{{ hostname }}/{{ username }}/containers'
-containers_dir: '/home/{{ username }}/containers'
+compose_file: "docker-compose.yaml"
+containers_backup_dir: "~/Sync/{{ hostname }}/{{ username }}/containers"
+containers_dir: "/home/{{ username }}/containers"
 
-migrate_containers: 'no'
-compose_up: 'no'
+migrate_containers: "no"
+compose_up: "no"
