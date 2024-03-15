@@ -86,6 +86,7 @@ sway_packages:
   - polkit-gnome
   - light
   - bc
+  - pulsemixer
 
 aur_packages:
   - keyd # key remap
