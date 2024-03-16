@@ -61,6 +61,7 @@ essential_packages:
   - neovim
   - net-tools
   - powertop
+  - screen
   - smartmontools
   - tmux
   - tree
