@@ -91,6 +91,7 @@ sway_packages:
 
 aur_packages:
   - keyd # key remap
+  - libinput-gestures
   - swaylock-effects
   - swayr
   - yay
