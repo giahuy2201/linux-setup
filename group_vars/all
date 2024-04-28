@@ -105,7 +105,6 @@ desktop_apps:
 
 flatpak_apps:
   - com.brave.Browser
-  - com.visualstudio.code-oss
 
 removed_packages:
   - atril
